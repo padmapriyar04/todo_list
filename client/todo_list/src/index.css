@@ -1,0 +1,57 @@
+body{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding-top: 20px;
+  background-color:cadetblue;
+}
+h1{
+  font-size: xx-large;
+  font-weight: 980;
+  color:darkblue;
+}
+.checkbox, .main-text, .cross {
+  margin: 0 5px; /* Adjust the margin as needed */
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tasks {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+.todo-iscomplete{
+  width: 20px;
+    height: 20px;
+    margin-right: 16px;
+    border-radius: 50%;
+    background-color:blueviolet;
+    background-image: linear-gradient(to bottom, transparent, transparent);
+    transition: 0.4s;
+}
+.todo- {
+  width: 20px;
+	height: 20px;
+	margin-right: 16px;
+	border-radius: 50%;
+	background-color:azure;
+	background-image: linear-gradient(to bottom, transparent, transparent);
+	transition: 0.4s;
+}
+.cross{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: brown;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo-iscomplete .main-text{
+  text-decoration: line-through;
+}
