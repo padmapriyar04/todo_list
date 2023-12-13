@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [todos,setTodos] = useState([])
+  const [popupActive,setPopupactive] = useState(false)
+  const [newTodo,setNewTodo] = useState('')
 
   useEffect(()=>{
     GetTodos()
@@ -36,6 +38,19 @@ function App() {
       console.log(err);
     }
   };
+  const addTodo = async()=>{
+    const data = await fetch("http://localhost:3007/todo/new",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body: JSON.stringify({
+        text: newTodo,
+      })
+    }).then(res=> res.json())
+
+    setTodos([...todos,data])
+  }
   return (
     <div className="App">
       <h1>Your To-do List</h1>
@@ -47,6 +62,21 @@ function App() {
             <div className="cross" onClick={()=> delete_todo(todo._id)}>X</div>
           </div>
       ))}
+      <div className="addPopup" onClick={()=>setPopupactive(true)}>+</div>
+      {
+        popupActive?(
+          <div className="popup">
+            <div className="cross" onClick={()=> setPopupactive(false)}>X</div>
+            <div className="content">
+              <input type="text" value={newTodo} onChange={(e)=>setNewTodo(e.target.value)} placeholder="New Task"/>
+              <button className="button" onClick={()=> {
+                addTodo()
+                setNewTodo('')
+              }}>Add Task</button>
+            </div>
+          </div>
+        ) :''
+      }
     </div>
   );
 }
